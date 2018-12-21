@@ -20,7 +20,7 @@ spec:
       serviceAccountName: rolemapper-sa
       containers:
       - name: rolemapper-service
-        image: dfdsdk/rolemapper-service:1337
+        image: dfdsdk/rolemapper-service:132290
         ports:
         - containerPort: 80
           name: web

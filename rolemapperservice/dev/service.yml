@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: rolemapper-service
+  name: rolemapper-service
+  namespace: rolemapper-dev
+  annotations:
+    flux.weave.works/automated: "true"
+spec:
+  ports:
+    - name: external
+      port: 80
+      targetPort: web
+  selector:
+    app: rolemapper-service
+  type: ClusterIP

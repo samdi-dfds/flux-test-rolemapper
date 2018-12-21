@@ -1,0 +1,33 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: rolemapper-service
+  namespace: rolemapper-dev
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.rolemapper-service: regexp:[1-9*]
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rolemapper-service
+  template:
+    metadata:
+      labels:
+        app: rolemapper-service
+    spec:
+      serviceAccountName: rolemapper-sa
+      containers:
+      - name: rolemapper-service
+        image: dfdsdk/rolemapper-service:132290
+        ports:
+        - containerPort: 80
+          name: web
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
